@@ -52,7 +52,7 @@
                     $isItExisting = (file_exists($filename));
 
                     $handle = fopen($filename, 'a');
-                    $msg = "<p>Thank you for your message, " . $_POST['name'] . "!</p><p>Here is a copy of your submission:</p><p><ul>";
+                    $msg = "<p>Thank you for your message, " . $_POST['name'] . "!</p><p>Here is a copy of your submission:<ul style='list-style-type: none; padding-left: 0; margin: 2em;'>";
                     $stringToAdd="";
                     echo "<h1>Thank you! We will get back to you soon!</h1>";
 
@@ -72,9 +72,13 @@
                         $stringToAdd.="$value,";
                     }
                     $stringToAdd.="\n";
+
                     $msg .='</ul></p>';
+
                     fwrite($handle, $stringToAdd);
                     fclose($handle);
+                    print $msg;
+                    exit;
                     
                     //admins at Church in Ann Arbor who will receive email
                     $admins = array(
