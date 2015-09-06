@@ -34,6 +34,7 @@
 <body>
     <!-- NAV SECTION -->
     <?php
+        require_once __DIR__ . '/Mail.php';
         $fileName = basename (__FILE__);
         include('nav.php');
     ?>
