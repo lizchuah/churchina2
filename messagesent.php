@@ -34,7 +34,7 @@
 <body>
     <!-- NAV SECTION -->
     <?php
-        require_once __DIR__ . '/Mail.php';
+        require_once __DIR__ . '/Email.php';
         $fileName = basename (__FILE__);
         include('nav.php');
     ?>
@@ -47,6 +47,7 @@
             <div class="row main-low-margin">
                 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                     <?php
+                    //save csv as backup to server
                     $filename = "SaveInfo.csv";
                     $isItExisting = (file_exists($filename));
 
@@ -59,7 +60,7 @@
                         foreach($_POST as $name => $value) {
                             $stringToAdd.="$name,";
                         }
-                        $stringToAdd.="\n";
+                        $stringToAdd .= "\n";
                         fwrite($handle, $stringToAdd);
                     }
 
@@ -71,22 +72,30 @@
                         $stringToAdd.="$value,";
                     }
                     $stringToAdd.="\n";
-
                     fwrite($handle, $stringToAdd);
-
                     fclose($handle);
-                    $to = 'lizchuah2@gmail.com';
-                    $fromsender = $_POST['name'];
-                    $fromemail = $_POST['email'];
-                    $headers = "From: " . $fromsender . " <" . $fromemail . ">\r\n";
-                    $headers2 = "From: The Church in Ann Arbor <lizchuah2@gmail.com>\r\n";
-                    $subject = "Message submission from " . $fromsender;
                     
-
-                    mail($to, $subject, $fromsender . " sent a message through your website and received a copy of the email below.\n\n"
-                         . $msg, $headers);
-                    mail($fromemail, 'Thank you for your message' . "\n", 
-                        $msg, $headers2);
+                    //admins at Church in Ann Arbor who will receive email
+                    $admins = array(
+                        array('email'=>'lizchuah2@gmail.com'),
+                        array('email'=>'calvinps@umich.edu'),
+                        array('email'=>'thechurchinannarbor@gmail.com'),
+                        array('email'=>'floydmcnutt@yahoo.com'),
+                        array('email'=>'chingshihy@gmail.com'),
+                    );
+                    $senderName = $_POST['name'];
+                    $senderEmail = $_POST['email'];
+                    
+                    $subject = "Message submission from " . $senderName;
+                    $body = $senderName . " sent a message through your website and received a copy of the email below.\n\n"
+                         . $msg;
+//                    send($html,$subject,$fromEmail,$fromName,$toArray)
+                    //Send email to Church in Ann Arbor admin
+                    Email::send($body,$subject,$senderEmail,$senderName,$admins);
+                    
+                    //Send confirmation email to sender
+                    $confirmationSubject = 'Thank you for your message';
+                    Email::send($msg,$confirmationSubject,'thechurchinannarbor@gmail.com','The Local Church in Ann Arbor',array(array('email'=>$senderEmail)));
                 ?>
                 </div>
             </div>
