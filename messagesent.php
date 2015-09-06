@@ -67,8 +67,9 @@
                     $stringToAdd="";
                     
                     foreach($_POST as $name => $value) {
-                        print "$name: $value<br>";
-                        $msg .="<li>$name: $value</li>";
+                        $capitalName = ucfirst($name);
+                        print "$capitalName: $value<br>";
+                        $msg .="<li>$capitalName: $value</li>";
                         $stringToAdd.="$value,";
                     }
                     $stringToAdd.="\n";
