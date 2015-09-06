@@ -52,7 +52,7 @@
                     $isItExisting = (file_exists($filename));
 
                     $handle = fopen($filename, 'a');
-                    $msg = "Thank you for your message, " . $_POST['name'] . "!\n\nHere is a copy of your submission:\n";
+                    $msg = "Thank you for your message, " . $_POST['name'] . "!<br><br>Here is a copy of your submission:<br>";
                     $stringToAdd="";
                     echo "<h1>Thank you! We will get back to you soon!</h1>";
 
@@ -67,7 +67,7 @@
                     $stringToAdd="";
                     
                     foreach($_POST as $name => $value) {
-                        print "$name: $value<br/>";
+                        print "$name: $value\n";
                         $msg .="$name: $value\n";
                         $stringToAdd.="$value,";
                     }
@@ -87,7 +87,7 @@
                     $senderEmail = $_POST['email'];
                     
                     $subject = "Message submission from " . $senderName;
-                    $body = $senderName . " sent a message through your website and received a copy of the email below.\n\n"
+                    $body = $senderName . " sent a message through your website and received a copy of the email below.<br><br>"
                          . $msg;
 //                    send($html,$subject,$fromEmail,$fromName,$toArray)
                     //Send email to Church in Ann Arbor admin
