@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/mandrill/src/Mandrill.php';
+require_once __DIR__ . '/assets/mandrill/src/Mandrill.php';
 global $mandrillGlobal;
 function mandrill() {
     global $mandrillGlobal;

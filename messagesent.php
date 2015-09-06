@@ -79,9 +79,9 @@
                     $admins = array(
                         array('email'=>'lizchuah2@gmail.com'),
                         array('email'=>'calvinps@umich.edu'),
-                        array('email'=>'thechurchinannarbor@gmail.com'),
-                        array('email'=>'floydmcnutt@yahoo.com'),
-                        array('email'=>'chingshihy@gmail.com'),
+                        // array('email'=>'thechurchinannarbor@gmail.com'),
+                        // array('email'=>'floydmcnutt@yahoo.com'),
+                        // array('email'=>'chingshihy@gmail.com'),
                     );
                     $senderName = $_POST['name'];
                     $senderEmail = $_POST['email'];
