@@ -58,9 +58,9 @@
 
                     if (!$isItExisting){
                         foreach($_POST as $name => $value) {
-                            $stringToAdd.="$name,";
+                            $stringToAdd .="$name,";
                         }
-                        $stringToAdd .= "\n";
+                        $stringToAdd .="timestamp,\n";
                         fwrite($handle, $stringToAdd);
                     }
 
@@ -70,30 +70,30 @@
                         $capitalName = ucfirst($name);
                         print "$capitalName: $value<br>";
                         $msg .="<li>$capitalName: $value</li>";
-                        $stringToAdd.="$value,";
+                        $stringToAdd .="$value,";
                     }
-                    $stringToAdd.="\n";
+                    date_default_timezone_set('America/New_York');
+                    $dateString = date("Y-m-d H:i:s", time());
+                    $stringToAdd .="$dateString,\n";
 
                     $msg .='</ul></span>';
 
                     fwrite($handle, $stringToAdd);
                     fclose($handle);
-                    print $msg;
-                    exit;
                     
                     //admins at Church in Ann Arbor who will receive email
                     $admins = array(
-                        array('email'=>'lizchuah2@gmail.com'),
+                        array('email'=>'thechurchinannarbor@gmail.com'),
+                        array('email'=>'floydmcnutt@yahoo.com'),
+                        array('email'=>'chingshihy@gmail.com'),
                         array('email'=>'calvinps@umich.edu'),
-                        // array('email'=>'thechurchinannarbor@gmail.com'),
-                        // array('email'=>'floydmcnutt@yahoo.com'),
-                        // array('email'=>'chingshihy@gmail.com'),
+                        array('email'=>'lizchuah2@gmail.com'),
                     );
                     $senderName = $_POST['name'];
                     $senderEmail = $_POST['email'];
                     
                     $subject = "Message submission from " . $senderName;
-                    $body = $senderName . " sent a message through your website and received a copy of the email below.<br><br>"
+                    $body = $senderName . " sent a message through www.churchinannarbor.org and received a copy of the email below.<br><br>"
                          . $msg;
 //                    send($html,$subject,$fromEmail,$fromName,$toArray)
                     //Send email to Church in Ann Arbor admin
