@@ -52,7 +52,7 @@
                     $isItExisting = (file_exists($filename));
 
                     $handle = fopen($filename, 'a');
-                    $msg = "<p>Thank you for your message, " . $_POST['name'] . "!</p><p>Here is a copy of your submission:</p><p>";
+                    $msg = "<p>Thank you for your message, " . $_POST['name'] . "!</p><p>Here is a copy of your submission:</p><p><ul>";
                     $stringToAdd="";
                     echo "<h1>Thank you! We will get back to you soon!</h1>";
 
@@ -67,12 +67,12 @@
                     $stringToAdd="";
                     
                     foreach($_POST as $name => $value) {
-                        print "$name: $value\n";
-                        $msg .="$name: $value<br>";
+                        print "$name: $value<br>";
+                        $msg .="<li>$name: $value</li>";
                         $stringToAdd.="$value,";
                     }
                     $stringToAdd.="\n";
-                    $msg .='</p>';
+                    $msg .='</ul></p>';
                     fwrite($handle, $stringToAdd);
                     fclose($handle);
                     
