@@ -47,25 +47,27 @@
             <div class="row main-low-margin">
                 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                     <?php
-                    //save csv as backup to server
-                    $filename = "SaveInfo.csv";
-                    $isItExisting = (file_exists($filename));
-
-                    $handle = fopen($filename, 'a');
+    //save csv as backup to server
+//                    $filename = "SaveInfo.csv";
+//                    $isItExisting = (file_exists($filename));
+//                    $handle = fopen($filename, 'a');
                     $msg = "<p>Thank you for your message, " . $_POST['name'] . "!</p><span>Here is a copy of your submission:<br><ul style='list-style-type: none; padding-left: 0; margin-left: 2em;'>";
                     $stringToAdd="";
                     echo "<h1>Thank you! We will get back to you soon!</h1>";
-
-                    if (!$isItExisting){
-                        foreach($_POST as $name => $value) {
-                            $stringToAdd .="$name,";
-                        }
-                        $stringToAdd .="timestamp,\n";
-                        fwrite($handle, $stringToAdd);
-                    }
+//                    if (!$isItExisting){
+//                        foreach($_POST as $name => $value) {
+//                            $stringToAdd .="$name,";
+//                        }
+//                        $stringToAdd .="timestamp,\n";
+//                        fwrite($handle, $stringToAdd);
+//                        fclose($handle);
+//                        var_dump('yes');
+//                        exit;
+//
+//                    }
 
                     $stringToAdd="";
-                    
+
                     foreach($_POST as $name => $value) {
                         $capitalName = ucfirst($name);
                         print "$capitalName: $value<br>";
@@ -77,10 +79,10 @@
                     $stringToAdd .="$dateString,\n";
 
                     $msg .='</ul></span>';
+//
+//                    fwrite($handle, $stringToAdd);
+//                    fclose($handle);
 
-                    fwrite($handle, $stringToAdd);
-                    fclose($handle);
-                    
                     //admins at Church in Ann Arbor who will receive email
                     $admins = array(
                         array('email'=>'thechurchinannarbor@gmail.com'),
@@ -91,18 +93,19 @@
                     );
                     $senderName = $_POST['name'];
                     $senderEmail = $_POST['email'];
-                    
+
                     $subject = "Message submission from " . $senderName;
                     $body = $senderName . " sent a message through www.churchinannarbor.org and received a copy of the email below.<br><br>"
                          . $msg;
-//                    send($html,$subject,$fromEmail,$fromName,$toArray)
+                    //send($html,$subject,$fromEmail,$fromName,$toArray)
                     //Send email to Church in Ann Arbor admin
                     Email::send($body,$subject,$senderEmail,$senderName,$admins);
-                    
+
                     //Send confirmation email to sender
                     $confirmationSubject = 'Thank you for your message';
                     Email::send($msg,$confirmationSubject,'thechurchinannarbor@gmail.com','The Local Church in Ann Arbor',array(array('email'=>$senderEmail)));
-                ?>
+
+                    ?>
                 </div>
             </div>
 

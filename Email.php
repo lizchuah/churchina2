@@ -9,7 +9,6 @@ function mandrill() {
     return $mandrillGlobal;
 }
 class Email {
-    
     static function send($html,$subject,$fromEmail,$fromName,$toArray) {
         try {
             $email = array(
@@ -20,7 +19,7 @@ class Email {
               'to' => $toArray,
               'track_opens' => true,
             );
-            return mandrill()->messages->send($email);
+            mandrill()->messages->send($email);
         }catch(Mandrill_Error $e) {
             // Mandrill errors are thrown as exceptions
             echo 'A mandrill error occurred: ' . get_class($e) . ' - ' . $e->getMessage();

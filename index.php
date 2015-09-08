@@ -9,8 +9,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="We are believers in the Lord Jesus Christ who have personally received Him as our Savior. He is the most excellent and enjoyable Person. We love Him and endeavor to give Him the first place in all things. We rejoice to be cleansed by the blood of Jesus, God’s Son, born again of the Father’s divine life, and filled with the Holy Spirit. We highly treasure the Holy Bible as God’s revelation of Himself and of His eternal purpose. We hold the common faith which is revealed in the Bible and is common to all genuine believers. As is true of all believers in Christ, we are members of His one Body, the church. In order to practice the oneness of the Body with all the Christians in Ann Arbor, we meet as the church in Ann Arbor. We are in fellowship with over 2,000 local churches worldwide to express the one Body of Christ.">
     <meta name="author" content="">
+    <meta name="keywords" content="Church,Ann Arbor,Christian,Bible,Michigan,Jesus,Christ,God">
     <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
@@ -61,18 +62,17 @@
                 <h3 class="text-center">THIS WEEK'S READING</h3>
                 <p class="italic">
                     The Holy Word for Morning Revival:<br>
-                    Crystallization-Study of Exodus, Vol. 3, <strong>Week 13</strong><br>
-                    The Law&mdash;the Testimony of God Revealing Him to His People and the Living Word of God
-                    to Infuse His Substance into His Loving Seekers
+                    Crystallization-Study of Exodus, Vol. 3, <strong>Week 14</strong><br>
+                    The Law&mdash;the Engagement Covenant between God and His People
                 </p>
 
                 <h3 class="text-center">EVENTS & CONFERENCES</h3>
                 <p>
                     <ul class="no-bullets">
-                        <li><a class="large-links" href="http://goo.gl/forms/FkAcF0ZSwe">Labor Day BBQ Picnic</a>
+<!--                        <li><a class="large-links" href="http://goo.gl/forms/FkAcF0ZSwe">Labor Day BBQ Picnic</a>
                                 <br>Sept. 7, 2015, 11am-2pm
                                 <br>Gallup Park</li>
-                                <br>
+                                <br>-->
                         <li><a class="large-links">U-M Festifall:<br>Christians on Campus Meet & Greet</a>
                                 <br>Sept. 10, 2015, 12am-4pm
                                 <br>Central Campus, University of Michigan</li>

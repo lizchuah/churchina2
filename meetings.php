@@ -98,7 +98,7 @@
             <h2>Upcoming Events</h2>
             <hr>
 
-            <div class="row static-images">
+<!--            <div class="row static-images">
                 <div class="col-md-6 col-sm-6">
                     <h3>Labor Day BBQ Picnic</h3>
                     <h4>September 7th, 2015, 11am-2pm<br>
@@ -113,7 +113,7 @@
                 <div class="col-md-6 col-sm-6">
                     <img src="assets/img/imgs/picnic_300.png">
                 </div>
-            </div>
+            </div>-->
             <div class="row main-low-margin static-images">
                 <div class="col-md-6 col-sm-6">
                     <img src="assets/img/imgs/tabling_300.png">
