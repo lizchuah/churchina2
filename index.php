@@ -79,7 +79,8 @@
                 <p ng-if="app.events.all.length > 0">
                     <ul class="no-bullets" style="overflow:auto;max-height:350px">
                         <li ng-repeat="event in app.events.all" style="padding-bottom:15px">
-                            <a class="large-links">{{event.title}}</a>
+                            <a href="https://docs.google.com/forms/d/1lOyOEyc1NDcpC7Zg8T2uIAs4uqwuhbL5Nvs4RKqqtaE/viewform?usp=send_form" 
+                            target="_blank"class="large-links">{{event.title}}</a>
                             <br>{{event.dates}}
                             <br ng-if="event.address">{{event.address}}
                             <br ng-if="event.city">{{event.city}}
