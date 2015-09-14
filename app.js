@@ -54,7 +54,8 @@ function Events(wrapParse) {
   var Events = wrapParse('Events', {
     title: String,
     dates: String,
-    location: String,
+    address: String,
+    city:String,
     note: String,
     endDate: Date,
   });

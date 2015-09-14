@@ -77,12 +77,13 @@
 
                 <h3 ng-if="app.events.all.length > 0" class="text-center">EVENTS & CONFERENCES</h3>
                 <p ng-if="app.events.all.length > 0">
-                    <ul class="no-bullets">
+                    <ul class="no-bullets" style="overflow:auto;max-height:350px">
                         <li ng-repeat="event in app.events.all" style="padding-bottom:15px">
                             <a class="large-links">{{event.title}}</a>
                             <br>{{event.dates}}
-                            <br>{{event.location}}
-                            <br>{{event.note ? event.note : ''}}
+                            <br ng-if="event.address">{{event.address}}
+                            <br ng-if="event.city">{{event.city}}
+                           <br ng-if="event.note">{{event.note ? event.note : ''}}
                         </li>
                     </ul>
                     <a href="meetings.php"><button type="submit" class="btn btn-primary">See more</button></a>

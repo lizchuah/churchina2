@@ -149,7 +149,8 @@
                     <div ng-repeat="event in app.events.all">
                         <h4>{{event.title}}</h4>
                         <p>{{event.dates}}<br>
-                           {{event.location}}<br>
+                           {{event.address}}<br ng-if="event.address">
+                           {{event.city}}<br ng-if="event.city">
                            {{event.note ? event.note : ''}}
                         </p>
                     </div>
