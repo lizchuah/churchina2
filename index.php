@@ -3,7 +3,7 @@
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
-<html lang="en">
+<html lang="en" ng-app="App">
 <!--<![endif]-->
 <!-- HEAD SECTION -->
 <head>
@@ -26,6 +26,15 @@
     <link href="assets/Slides-SlidesJS-3/examples/playing/css/slider.css" rel="stylesheet" />
     <!--CUSTOM STYLE -->
     <link href="assets/css/style.css" rel="stylesheet" />
+    
+    <!--    include js files-->
+    <script src="assets/js/parseDev.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+<!--    <script src="bower_components/angular-parse-wrapper/dist/angular-parse-wrapper.min.js"></script>-->
+    <script src="bower_components/angular-parse-wrapper/src/parse-wrapper.js"></script>
+    <script src="bower_components/lodash/dist/lodash.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <script src="app.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,7 +43,7 @@
     <![endif]-->
 </head>
 <!--END HEAD SECTION -->
-<body>
+<body ng-controller="AppController as app">
     <!-- NAV SECTION -->
     <?php
         $fileName = basename (__FILE__);
@@ -59,31 +68,22 @@
         <div class="row main-low-margin text-justify">
             <div class="col-md-4 col-sm-4">
 <!--                 <div class="circle-body"><i class="fa fa-camera fa-5x  icon-set"></i></div> -->
-                <h3 class="text-center">THIS WEEK'S READING</h3>
-                <p class="italic">
+                <h3 ng-if="app.HWMR.current" class="text-center">THIS WEEK'S READING</h3>
+                <p ng-if="app.HWMR.current" class="italic">
                     The Holy Word for Morning Revival:<br>
-                    Crystallization-Study of Exodus, Vol. 3, <strong>Week 14</strong><br>
-                    The Law&mdash;the Engagement Covenant between God and His People
+                    {{app.HWMR.current.bookTitle}} <strong>Week {{app.HWMR.current.week}}</strong><br>
+                    "{{app.HWMR.current.messageTitle}}"
                 </p>
 
-                <h3 class="text-center">EVENTS & CONFERENCES</h3>
-                <p>
+                <h3 ng-if="app.events.all.length > 0" class="text-center">EVENTS & CONFERENCES</h3>
+                <p ng-if="app.events.all.length > 0">
                     <ul class="no-bullets">
-<!--                        <li><a class="large-links" href="http://goo.gl/forms/FkAcF0ZSwe">Labor Day BBQ Picnic</a>
-                                <br>Sept. 7, 2015, 11am-2pm
-                                <br>Gallup Park</li>
-                                <br>-->
-                        <li><a class="large-links">U-M Festifall:<br>Christians on Campus Meet & Greet</a>
-                                <br>Sept. 10, 2015, 12am-4pm
-                                <br>Central Campus, University of Michigan</li>
-                                <br>
-                        <li><a class="large-links" href="http://goo.gl/forms/FkAcF0ZSwe">ITERO Fall 2015</a>
-                                <br>Oct. 1-3, 2015
-                                <br>Águas de Lindóia, Brazil</li>
-                                <br>
-                        <li><a class="large-links" href="http://goo.gl/forms/FkAcF0ZSwe">College Conference</a>
-                                <br>Oct. 30-Nov. 1, 2015
-                                <br>Dayton, OH</li>
+                        <li ng-repeat="event in app.events.all" style="padding-bottom:15px">
+                            <a class="large-links">{{event.title}}</a>
+                            <br>{{event.dates}}
+                            <br>{{event.location}}
+                            <br>{{event.note ? event.note : ''}}
+                        </li>
                     </ul>
                     <a href="meetings.php"><button type="submit" class="btn btn-primary">See more</button></a>
                 </p>
