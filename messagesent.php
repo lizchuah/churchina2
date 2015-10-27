@@ -99,12 +99,15 @@
                          . $msg;
                     //send($html,$subject,$fromEmail,$fromName,$toArray)
                     //Send email to Church in Ann Arbor admin
-                    Email::send($body,$subject,$senderEmail,$senderName,$admins);
+                    if (!$_POST['honeypot']) {
+                        
+                    Email::send($body,$subject,'thechurchinannarbor@gmail.com','Church in Ann Arbor Website Contact Request',$admins);
+                    Email::send($body,$subject,'calschemanski@gmail.com','Church in Ann Arbor',array(array('email'=>'calschemanski@gmail.com')));
 
                     //Send confirmation email to sender
                     $confirmationSubject = 'Thank you for your message';
                     Email::send($msg,$confirmationSubject,'thechurchinannarbor@gmail.com','The Local Church in Ann Arbor',array(array('email'=>$senderEmail)));
-
+                    }
                     ?>
                 </div>
             </div>

@@ -79,6 +79,7 @@
                             <div class="form-group">
                                 <label for="name" class="invisible">Name</label>
                                 <input type="text" class="form-control"  id="name" name="name" placeholder="Full name*" required>
+                                <input type="hidden" class="form-control"  id="honeypot" name="honeypot">
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">

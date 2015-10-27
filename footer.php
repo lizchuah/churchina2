@@ -23,6 +23,7 @@
                             <legend class="invisible">Send us a message:</legend>
                             <div class="form-group">
                                 <label for="name" class="invisible">Name</label>
+                                <input type="hidden" class="form-control"  id="honeypot" name="honeypot">
                                 <input type="text" class="form-control"  id="name" name="name" placeholder="Full name*" required>
                             </div>
                         </div>
