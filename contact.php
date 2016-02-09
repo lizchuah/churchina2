@@ -3,6 +3,9 @@
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
+<?php
+session_start();
+?>
 <html lang="en">
 <!--<![endif]-->
 <!-- HEAD SECTION -->
@@ -28,6 +31,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <!--END HEAD SECTION -->
 <body>
@@ -70,6 +74,13 @@
 
             <div class="col-md-7 col-sm-7">
                 <h3>ASK A QUESTION</h3>
+                <?php 
+                    if (isset($_SESSION['error'])) {
+                        echo '<p class="text-danger">'.$_SESSION['error'].'</p>';
+                        unset($_SESSION['error']);
+                    }
+                ?>
+                
                 <hr>
                 <form role="form" action="messagesent.php" method="POST">
                     <div class="row">
@@ -78,14 +89,23 @@
                             <legend class="invisible">Send us a message:</legend>
                             <div class="form-group">
                                 <label for="name" class="invisible">Name</label>
-                                <input type="text" class="form-control"  id="name" name="name" placeholder="Full name*" required>
-                                <input type="hidden" class="form-control"  id="honeypot" name="honeypot">
+                                <input type="text" class="form-control"  id="name" name="name" placeholder="Full name*" value="<?php 
+                                        if (isset($_SESSION['name'])) {
+                                            echo $_SESSION['name'];
+                                            unset($_SESSION['name']);
+                                        }
+                                    ?>" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-group">
                                 <label for="email" class="invisible">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Email address*" required>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Email address*" required value="<?php 
+                                        if (isset($_SESSION['email'])) {
+                                            echo $_SESSION['email'];
+                                            unset($_SESSION['email']);
+                                        }
+                                    ?>">
                             </div>
                         </div>
                     </div>
@@ -93,13 +113,20 @@
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label for="message" class="invisible">Message</label>
-                                <textarea class="form-control" rows="7" id="message" name="message" placeholder="Message*" required></textarea>
+                                <textarea class="form-control" rows="7" id="message" name="message" placeholder="Message*" required><?php 
+                                        if (isset($_SESSION['messageText'])) {
+                                            echo $_SESSION['messageText'];
+                                            unset($_SESSION['messageText']);
+                                        }
+                                    ?></textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="g-recaptcha col-md-6 col-sm-12" data-sitekey="6Le2rQ8TAAAAAEK3EdUuHYe9WQXaVclzJ4q4EFyv"></div>
+                            <div class="form-group col-md-6 col-sm-12" style="padding-top:20px">
                                 <button type="submit" class="btn btn-primary">Send Message</button>
                             </div>
                         </div>
                     </div>
+                    
                 </form>
             </div>
         </div>

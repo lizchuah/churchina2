@@ -69,10 +69,9 @@
             <div class="col-md-4 col-sm-4">
 <!--                 <div class="circle-body"><i class="fa fa-camera fa-5x  icon-set"></i></div> -->
                 <h3 ng-if="app.HWMR.current" class="text-center">THIS WEEK'S READING</h3>
-                <p ng-if="app.HWMR.current" class="italic">
-                    The Holy Word for Morning Revival:<br>
-                    {{app.HWMR.current.bookTitle}} <strong>Week {{app.HWMR.current.week}}</strong><br>
-                    "{{app.HWMR.current.messageTitle}}"
+                <p ng-if="app.HWMR.current" class="text-center">
+                    The Holy Word for Morning Revival: {{app.HWMR.current.bookTitle}}.<br>
+                    <u class="italic"><strong>Week {{app.HWMR.current.week}}: </strong>"{{app.HWMR.current.messageTitle}}"</u>
                 </p>
 
                 <h3 ng-if="app.events.all.length > 0" class="text-center">EVENTS & CONFERENCES</h3>

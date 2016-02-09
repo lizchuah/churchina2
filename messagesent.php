@@ -3,6 +3,11 @@
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!-->
+<?php 
+        require_once __DIR__ . '/Email.php';
+        require_once( __DIR__ . '\CaptchaRequest.php');
+session_start();
+?>
 <html lang="en">
 <!--<![endif]-->
 <!-- HEAD SECTION -->
@@ -34,7 +39,6 @@
 <body>
     <!-- NAV SECTION -->
     <?php
-        require_once __DIR__ . '/Email.php';
         $fileName = basename (__FILE__);
         include('nav.php');
     ?>
@@ -47,32 +51,28 @@
             <div class="row main-low-margin">
                 <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
                     <?php
-    //save csv as backup to server
-//                    $filename = "SaveInfo.csv";
-//                    $isItExisting = (file_exists($filename));
-//                    $handle = fopen($filename, 'a');
+                    if (!$_POST['g-recaptcha-response']) {
+                        $_SESSION['messageText'] = $_POST['message'];
+                        $_SESSION['name'] = $_POST['name'];
+                        $_SESSION['email'] = $_POST['email'];
+                        $_SESSION['error'] = 'Missing Captcha Test';
+                        header('Location: contact.php');
+                        exit;
+                    }
+
                     $msg = "<p>Thank you for your message, " . $_POST['name'] . "!</p><span>Here is a copy of your submission:<br><ul style='list-style-type: none; padding-left: 0; margin-left: 2em;'>";
                     $stringToAdd="";
                     echo "<h1>Thank you! We will get back to you soon!</h1>";
-//                    if (!$isItExisting){
-//                        foreach($_POST as $name => $value) {
-//                            $stringToAdd .="$name,";
-//                        }
-//                        $stringToAdd .="timestamp,\n";
-//                        fwrite($handle, $stringToAdd);
-//                        fclose($handle);
-//                        var_dump('yes');
-//                        exit;
-//
-//                    }
 
                     $stringToAdd="";
-
+                    
                     foreach($_POST as $name => $value) {
-                        $capitalName = ucfirst($name);
-                        print "$capitalName: $value<br>";
-                        $msg .="<li>$capitalName: $value</li>";
-                        $stringToAdd .="$value,";
+                        if (in_array($name,array('name','email','message'))) {
+                            $capitalName = ucfirst($name);
+                            print "$capitalName: $value<br>";
+                            $msg .="<li>$capitalName: $value</li>";
+                            $stringToAdd .="$value,";
+                        }
                     }
                     date_default_timezone_set('America/New_York');
                     $dateString = date("Y-m-d H:i:s", time());
@@ -99,14 +99,17 @@
                          . $msg;
                     //send($html,$subject,$fromEmail,$fromName,$toArray)
                     //Send email to Church in Ann Arbor admin
-                    if (!$_POST['honeypot']) {
-                        
+
+                    try {
+                    CaptchaRequest::verify($_POST['g-recaptcha-response']);   
                     Email::send($body,$subject,'thechurchinannarbor@gmail.com','Church in Ann Arbor Website Contact Request',$admins);
                     Email::send($body,$subject,'calschemanski@gmail.com','Church in Ann Arbor',array(array('email'=>'calschemanski@gmail.com')));
 
                     //Send confirmation email to sender
                     $confirmationSubject = 'Thank you for your message';
                     Email::send($msg,$confirmationSubject,'thechurchinannarbor@gmail.com','The Local Church in Ann Arbor',array(array('email'=>$senderEmail)));
+                    } catch (Exception $exc) {
+                        echo 'Gotcha Bot!';
                     }
                     ?>
                 </div>
